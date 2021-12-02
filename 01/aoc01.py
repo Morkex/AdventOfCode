@@ -1,4 +1,4 @@
-file = "C:/Users/morke/Desktop/AdventOfCode/01/input.txt"
+file = "01\Input.txt"
 
 
 def readFile(file):
