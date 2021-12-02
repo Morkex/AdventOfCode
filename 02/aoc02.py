@@ -44,10 +44,8 @@ def calculaCoordenadasAim(lista):
             depth += aim*int(x[1])
 
         if(x[0]) == "up":
-            #depth -= int(x[1])
             aim -= int(x[1])
         if(x[0]) == "down":
-            #depth += int(x[1])
             aim += int(x[1])
     lista = [hori, depth]
     return lista
@@ -59,4 +57,3 @@ def multiplication(lista):
 
 print("Part1: " + str(multiplication(calculaCoordenadas(listOfLists(readFile(file))))))
 print("Part2: " + str(multiplication(calculaCoordenadasAim(listOfLists(readFile(file))))))
-
