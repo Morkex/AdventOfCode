@@ -30,7 +30,5 @@ def countIncrementsPart2(list):
     return list3
 
 
-print("Part1:")
-print(countIncrementsPart1(readFile(file)))
-print("Part2:")
-print(countIncrementsPart1(countIncrementsPart2(readFile(file))))
+print("Part1: " + str(countIncrementsPart1(readFile(file))))
+print("Part2: " + str(countIncrementsPart1(countIncrementsPart2(readFile(file)))))
