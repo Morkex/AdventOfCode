@@ -1,6 +1,3 @@
-import builtins
-
-
 file = "03\Input.txt"
 
 
@@ -13,28 +10,63 @@ def readFile(file):
     return list
 
 
-def separateBitsList(listi):
-    lista = []
-    for x in listi:
-        lista.append(list(x))
-    return lista
+def separateBitsList(listaCompleta):
+    listaDeListas = []
+    for x in listaCompleta:
+        listaDeListas.append(list(x))
+    return listaDeListas
 
 
-def mostCommonBit(list, columna):
-    bit = 0
-    apariciones1 = 0
-    for x in list:
-        if(x[columna] == 1):
-            apariciones1 += 1
-    if(apariciones1 > len(list)/2):
-        bit = 1
-    else:
-        bit = 0
-    return bit
+def listaDeColumnas(listadeListas, columna):
+    listaDeColumna = []
+    for x in listadeListas:
+        listaDeColumna.append(x[columna])
+    return listaDeColumna
 
-def generateGamma(list):
+
+def mostCommonBit(listaDeColumna):
+    bitMasComun = ""
+    if(listaDeColumna.count("0") > listaDeColumna.count("1")):
+        bitMasComun = "0"
+    if(listaDeColumna.count("0") < listaDeColumna.count("1")):
+        bitMasComun = "1"
+    return bitMasComun
+
+
+def leastCommonBit(listaDeColumna):
+    bitMenosComun = ""
+    if(listaDeColumna.count("0") < listaDeColumna.count("1")):
+        bitMenosComun = "0"
+    if(listaDeColumna.count("0") > listaDeColumna.count("1")):
+        bitMenosComun = "1"
+    return bitMenosComun
+
+
+def generateGammaBits(listaDeListas):
     gamma = ""
-    
-    return gamma
+    columna = 0
+    for columna in listaDeListas[0]:
+        gamma += mostCommonBit(listaDeColumnas(listaDeListas, int(columna)))
+    return gamma[::-1]
 
-print(mostCommonBit(separateBitsList(readFile(file)),0))
+
+def generateEpsilonBits(listaDeListas):
+    epsilon = ""
+    columna = 0
+    for columna in listaDeListas[0]:
+        epsilon += leastCommonBit(listaDeColumnas(listaDeListas, int(columna)))
+    return epsilon[::-1]
+
+
+listaFile = readFile(file)
+listaDeListasFile = separateBitsList(listaFile)
+
+print(generateGammaBits(listaDeListasFile))
+print(generateEpsilonBits(listaDeListasFile))
+
+print(int(generateGammaBits(listaDeListasFile), 2))
+print(int(generateEpsilonBits(listaDeListasFile), 2))
+
+print(int(generateGammaBits(listaDeListasFile), 2) *
+      int(generateEpsilonBits(listaDeListasFile), 2))
+print("Tiene que dar 4118544")
